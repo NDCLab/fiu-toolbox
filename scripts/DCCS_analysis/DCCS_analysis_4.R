@@ -1,6 +1,7 @@
 library(readr)
 library(dplyr)
 library(purrr)
+library(plotrix)
 
 #access all the dccs files from a folder (change directory to the one on your computer)
 #set up root dir for data to be processed
@@ -14,7 +15,9 @@ proc_fileName <- "2021-11-05_dccs_behavior_summary.csv"
 sub_folders <- list.files(data_path, pattern = "sub")
 
 #create a spaceholder for the results 
-resultsDCCS <- setNames(data.frame(matrix(ncol = 10, nrow = 0)), c("id", "av_same_rt", "av_diff_rt", "av_same_rt_log", "av_diff_rt_log", "av_same_corr", "av_diff_corr", "switch_cost_RT", "switch_cost_RT_log", "switch_cost_corr"))
+resultsDCCS <- setNames(data.frame(matrix(ncol = 19, nrow = 0)), c("id", "colshape_corr_av", "colshape_corr_se", "colshape_rt_av",
+              "colshape_rt_log_av","colshape_rt_se","av_same_rt", "se_same_rt", "av_diff_rt", "se_same_rt", "av_same_rt_log", "av_diff_rt_log", "av_same_corr","se_same_corr",
+              "av_diff_corr", "se_diff_corr", "switch_cost_RT", "switch_cost_RT_log", "switch_cost_corr"))
 
 #create a loop for processing each file in the folder (export and open each file)
 #loop over participant (subfolders)
@@ -45,11 +48,13 @@ for(i in 1:length(sub_folders)) {
     #rename columns (keys=the keys that a participant pressed,correct_resp=whether a participant was correct,rt=response time,cue=what was the condition)
     names(chosen_cols) <- c('participant', 'keys','correct_resp', 'rt', 'cue')
     
-    #create two vectors, first removing the last condition, and second removing the first condition
+    # to find general switch between conditions create two vectors, 
+    #first removing the last condition, and second removing the first condition
     condition_list1 <- (chosen_cols$cue[-length(chosen_cols$cue)])
     condition_list2 <- (chosen_cols$cue[-1])
     
-    #create two df that compare first condition list to the second one with TRUE and FALSE values (true=same, false+different and reverse)
+    #create two df that compare first condition list to the second one with TRUE and FALSE values 
+    #(true=same, false+different and reverse)
     compare_same <- data.frame(condition_list1 == condition_list2)
     compare_same <- rbind(c(NA), compare_same) #add NA to the first row since it doesn't count
     compare_same <- cbind(chosen_cols, compare_same)
@@ -58,9 +63,12 @@ for(i in 1:length(sub_folders)) {
     same_list <- compare_same[compare_same$cond_same==TRUE, ]
     diff_list <- compare_same[compare_same$cond_same==FALSE, ]
     
+   
     #find average for accuracy for the same or different trials
     av_same_corr <- mean(same_list$correct_resp)
+    se_same_corr <- std.error(same_list$correct_resp)
     av_diff_corr <- mean(diff_list$correct_resp)
+    se_diff_corr <- std.error(diff_list$correct_resp)
     
     #subset the data for correct trials only, separately for different and same condition trials, creating new data frames for each
     testDatTrim_sameCorr <- same_list[same_list$correct_resp==1, ]
@@ -68,11 +76,36 @@ for(i in 1:length(sub_folders)) {
     
     #convert true values into rt, find its average
     av_same_rt <- mean(testDatTrim_sameCorr$rt)
+    se_same_rt <- std.error(testDatTrim_sameCorr$rt)
     av_diff_rt <- mean(testDatTrim_diffCorr$rt)
+    se_diff_rt <- std.error(testDatTrim_diffCorr$rt)
     
     #convert true values into rt,find its log and find its average
     av_same_rt_log <- mean(log(1+testDatTrim_sameCorr$rt)) #note that we add 1 first before taking log to avoid negative log values
     av_diff_rt_log <- mean(log(1+testDatTrim_diffCorr$rt)) #note that we add 1 first before taking log to avoid negative log values
+    
+    
+    #find when the condition switches COLOR -> SHAPE
+    col_shape <- diff_list[diff_list$cue == "SHAPE", ]
+    #find RT and accuracy for COLOR->SHAPE switch
+    colshape_corr_av <- mean(col_shape$correct_resp)
+    colshape_corr_se <- std.error(col_shape$correct_resp)
+    colshape_resp <- col_shape[col_shape$correct_resp==1, ] 
+    colshape_rt_av <- mean(colshape_resp$rt)
+    colshape_rt_se <- std.error(colshape_resp$rt)
+    colshape_rt_log_av <- mean(log(1+colshape_resp$rt))
+    
+    
+    #find RT and accuracy for SHAPE->COLOR switch
+    shape_col <- diff_list[diff_list$cue != "SHAPE", ]
+    #find RT and accuracy for COLOR->SHAPE switch
+    shapecol_corr_av <- mean(shape_col$correct_resp)
+    shapecol_corr_se <- std.error(shape_col$correct_resp)
+    shapecol_resp <- shape_col[shape_col$correct_resp==1, ] 
+    shapecol_rt_av <- mean(shapecol_resp$rt)
+    shapecol_rt_se <- std.error(shapecol_resp$rt)
+    shapecol_rt_log_av <- mean(log(1+shapecol_resp$rt))
+    
     
     #find the difference between same vs different reaction times
     switch_cost_RT <- av_diff_rt - av_same_rt
@@ -83,8 +116,9 @@ for(i in 1:length(sub_folders)) {
     
     #create a dataframe that captures all of the outcomes from each dataframe
     id <- chosen_cols[1, 1] #create a variable reflecting id of a participant
-    resultsDCCS[nrow(resultsDCCS) + 1,] <-c(id, av_same_rt, av_diff_rt, av_same_rt_log, av_diff_rt_log, av_same_corr, av_diff_corr, switch_cost_RT, switch_cost_RT_log, switch_cost_corr)
-    } else {
+    resultsDCCS[nrow(resultsDCCS) + 1,] <-c(id, colshape_corr_av, colshape_corr_se, colshape_rt_av,
+                                            colshape_rt_log_av, colshape_rt_se, av_same_rt, se_same_rt, av_diff_rt, se_same_rt, av_same_rt_log, av_diff_rt_log, av_same_corr, se_same_corr,
+                                            av_diff_corr, se_diff_corr, switch_cost_RT, switch_cost_RT_log, switch_cost_corr)
     print("Ruh Roh... missing file")
     }
 }
@@ -94,4 +128,4 @@ for(i in 1:length(sub_folders)) {
 write.csv(resultsDCCS, paste(out_path,proc_fileName, sep = "", collapse = NULL), row.names=FALSE)
 
 library(lsr)
-t.test(resultsDCCS$av_diff_rt, resultsDCCS$av_same_rt, alternative = "two.sided", paired = TRUE)
+t.test(resultsDCCS$av_diff_corr, resultsDCCS$av_same_corr, alternative = "two.sided", paired = TRUE)

@@ -114,5 +114,8 @@ write.csv(summaryDat,paste(out_path,proc_fileName, sep = "", collapse = NULL), r
 ##read data back in to check it is correct
 #temp <- read.csv(file = paste(out_path,proc_fileName, sep = "", collapse = NULL))
 
+ggplot(data = summaryDat, mapping = aes(x = flankEff_Acc, y = flankEff_logRT)) +
+  geom_point()
+
 library(lsr)
 t.test(summaryDat$conCorr_RT_mean, summaryDat$inconCorr_RT_mean, alternative = "two.sided", paired = TRUE)
