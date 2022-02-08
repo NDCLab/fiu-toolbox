@@ -171,8 +171,8 @@ for(i in 1:length(sub_folders)){
     anySwitch_meanACC <- mean(testDatTrim_anySwitch$key_resp_13.corr)
     anySwitchOPP_meanACC <- mean(testDatTrim_anySwitchOPP$key_resp_13.corr)
 
-    anySwitch_seACC <- sd(testDatTrim_anySwitch$key_resp_13.corr)/sqrt(length(testDatTrim_anySwitch$key_resp_13.corr))
-    anySwitchOPP_seACC <- sd(testDatTrim_anySwitchOPP$key_resp_13.corr)/sqrt(length(testDatTrim_anySwitchOPP$key_resp_13.corr))
+    anySwitch_seACC <- std.error(testDatTrim_anySwitch$key_resp_13.corr)
+    anySwitchOPP_seACC <- std.error(testDatTrim_anySwitchOPP$key_resp_13.corr)
 
     #subset the data for correct trials only, separately for switch versus nonswitch trials, creating new dataframes for each
     testDatTrim_anySwitchCorr <- testDatTrim_anySwitch[testDatTrim_anySwitch$key_resp_13.corr==1, ]
@@ -182,8 +182,8 @@ for(i in 1:length(sub_folders)){
     anySwitchCorr_meanRT <- mean(testDatTrim_anySwitchCorr$key_resp_13.rt)
     anySwitchOPPCorr_meanRT <- mean(testDatTrim_anySwitchOPPCorr$key_resp_13.rt)
 
-    anySwitchCorr_seRT <- sd(testDatTrim_anySwitchCorr$key_resp_13.rt)/sqrt(length(testDatTrim_anySwitchCorr$key_resp_13.rt))
-    anySwitchOPPCorr_seRT <- sd(testDatTrim_anySwitchOPPCorr$key_resp_13.rt)/sqrt(length(testDatTrim_anySwitchOPPCorr$key_resp_13.rt))
+    anySwitchCorr_seRT <- std.error(testDatTrim_anySwitchCorr$key_resp_13.rt)
+    anySwitchOPPCorr_seRT <- std.error(testDatTrim_anySwitchOPPCorr$key_resp_13.rt)
 
     anySwitchCorr_logMeanRT <- mean(log((1+testDatTrim_anySwitchCorr$key_resp_13.rt)))
     anySwitchOPPCorr_logMeanRT <- mean(log((1+testDatTrim_anySwitchOPPCorr$key_resp_13.rt)))
@@ -216,9 +216,9 @@ for(i in 1:length(sub_folders)){
     toShapeOPP_meanACC <- mean(testDatTrim_toShapeOPP$key_resp_13.corr)
     toShapePRE_meanACC <- mean(testDatTrim_toShapePRE$key_resp_13.corr)
 
-    toShape_seACC <- sd(testDatTrim_toShape$key_resp_13.corr)/sqrt(length(testDatTrim_toShape$key_resp_13.corr))
-    toShapeOPP_seACC <- sd(testDatTrim_toShapeOPP$key_resp_13.corr)/sqrt(length(testDatTrim_toShapeOPP$key_resp_13.corr))
-    toShapePRE_seACC <- sd(testDatTrim_toShapePRE$key_resp_13.corr)/sqrt(length(testDatTrim_toShapePRE$key_resp_13.corr))
+    toShape_seACC <- std.error(testDatTrim_toShape$key_resp_13.corr)
+    toShapeOPP_seACC <- std.error(testDatTrim_toShapeOPP$key_resp_13.corr)
+    toShapePRE_seACC <- std.error(testDatTrim_toShapePRE$key_resp_13.corr)
 
     #subset the data for correct trial pairs only, creating new dataframes for each
     testDatTrim_toShapeCorr <- testDatTrim_toShape[!testDatTrim_toShape$toShapeSwitchPairErr, ]
@@ -230,9 +230,9 @@ for(i in 1:length(sub_folders)){
     toShapeOPPCorr_meanRT <- mean(testDatTrim_toShapeOPPCorr$key_resp_13.rt)
     toShapePRECorr_meanRT <- mean(testDatTrim_toShapePRECorr$key_resp_13.rt)
 
-    toShapeCorr_seRT <- sd(testDatTrim_toShapeCorr$key_resp_13.rt)/sqrt(length(testDatTrim_toShapeCorr$key_resp_13.rt))
-    toShapeOPPCorr_seRT <- sd(testDatTrim_toShapeOPPCorr$key_resp_13.rt)/sqrt(length(testDatTrim_toShapeOPPCorr$key_resp_13.rt))
-    toShapePRECorr_seRT <- sd(testDatTrim_toShapePRECorr$key_resp_13.rt)/sqrt(length(testDatTrim_toShapePRECorr$key_resp_13.rt))
+    toShapeCorr_seRT <- std.error(testDatTrim_toShapeCorr$key_resp_13.rt)
+    toShapeOPPCorr_seRT <- std.error(testDatTrim_toShapeOPPCorr$key_resp_13.rt)
+    toShapePRECorr_seRT <- std.error(testDatTrim_toShapePRECorr$key_resp_13.rt)
 
     toShapeCorr_logMeanRT <- mean(log((1+testDatTrim_toShapeCorr$key_resp_13.rt)))
     toShapeOPPCorr_logMeanRT <- mean(log((1+testDatTrim_toShapeOPPCorr$key_resp_13.rt)))
@@ -268,9 +268,9 @@ for(i in 1:length(sub_folders)){
     toColorOPP_meanACC <- mean(testDatTrim_toColorOPP$key_resp_13.corr)
     toColorPRE_meanACC <- mean(testDatTrim_toColorPRE$key_resp_13.corr)
 
-    toColor_seACC <- sd(testDatTrim_toColor$key_resp_13.corr)/sqrt(length(testDatTrim_toColor$key_resp_13.corr))
-    toColorOPP_seACC <- sd(testDatTrim_toColorOPP$key_resp_13.corr)/sqrt(length(testDatTrim_toColorOPP$key_resp_13.corr))
-    toColorPRE_seACC <- sd(testDatTrim_toColorPRE$key_resp_13.corr)/sqrt(length(testDatTrim_toColorPRE$key_resp_13.corr))
+    toColor_seACC <- std.error(testDatTrim_toColor$key_resp_13.corr)
+    toColorOPP_seACC <- std.error(testDatTrim_toColorOPP$key_resp_13.corr)
+    toColorPRE_seACC <- std.error(testDatTrim_toColorPRE$key_resp_13.corr)
 
     #subset the data for correct trial pairs only, creating new dataframes for each
     testDatTrim_toColorCorr <- testDatTrim_toColor[!testDatTrim_toColor$toColorSwitchPairErr, ]
@@ -282,9 +282,9 @@ for(i in 1:length(sub_folders)){
     toColorOPPCorr_meanRT <- mean(testDatTrim_toColorOPPCorr$key_resp_13.rt)
     toColorPRECorr_meanRT <- mean(testDatTrim_toColorPRECorr$key_resp_13.rt)
 
-    toColorCorr_seRT <- sd(testDatTrim_toColorCorr$key_resp_13.rt)/sqrt(length(testDatTrim_toColorCorr$key_resp_13.rt))
-    toColorOPPCorr_seRT <- sd(testDatTrim_toColorOPPCorr$key_resp_13.rt)/sqrt(length(testDatTrim_toColorOPPCorr$key_resp_13.rt))
-    toColorPRECorr_seRT <- sd(testDatTrim_toColorPRECorr$key_resp_13.rt)/sqrt(length(testDatTrim_toColorPRECorr$key_resp_13.rt))
+    toColorCorr_seRT <- std.error(testDatTrim_toColorCorr$key_resp_13.rt)
+    toColorOPPCorr_seRT <- std.error(testDatTrim_toColorOPPCorr$key_resp_13.rt)
+    toColorPRECorr_seRT <- std.error(testDatTrim_toColorPRECorr$key_resp_13.rt)
 
     toColorCorr_logMeanRT <- mean(log((1+testDatTrim_toColorCorr$key_resp_13.rt)))
     toColorOPPCorr_logMeanRT <- mean(log((1+testDatTrim_toColorOPPCorr$key_resp_13.rt)))
