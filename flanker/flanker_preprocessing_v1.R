@@ -54,17 +54,18 @@ for(i in 1:length(data_sets)) {
 
 	#loop over participant (subfolders)
 	for(i in 1:length(sub_folders)){
-		print(pav_data)
-		print(sub_folders[i])
+		# construct data path
+		sub_folder <- paste(pav_data,sub_folders[i], sep = "/", collapse = NULL)
 		#for this participant, find the flanker csv file
-		flanker_file <- list.files(paste(pav_data,sub_folders[i], sep = "/", collapse = NULL), pattern = ".*(flanker)+.*(.csv)")
+		flanker_file <- list.files(sub_folder, pattern = ".*(flanker)+.*(.csv)")
 
 		#logical to make sure there is a flanker file for this participant before loading, else, skip to next participant
 		if (!identical(flanker_file, character(0))) {
 			print("Woohoo! Processing file!")
-
+			flanker_path <- paste(pav_data,sub_folders[i],flanker_file, sep = "/", collapse = NULL)
+			print(flanker_path)
 			#read in the data for this participant
-			flankerDat <- read.csv(file = paste(pav_data,sub_folders[i],flanker_file, sep = "/", collapse = NULL), stringsAsFactors = TRUE)
+			flankerDat <- read.csv(file = flanker_path, stringsAsFactors = TRUE)
 			id <- flankerDat$id[1]
 
 			#remove practice trials and any rows that do not reflect experiment data
