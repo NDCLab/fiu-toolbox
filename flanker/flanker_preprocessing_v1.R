@@ -1,7 +1,7 @@
 # Flanker Preprocessing
 # Version: 1
-# Authors: George A. Buzzell, Jessica M. Alexander, Arina Polyanskaya
-# Last Updated: 2022-02-04
+# Authors: George A. Buzzell, Jessica M. Alexander, Arina Polyanskaya, Farukh Bakhtyyarovich Saidmuratov
+# Last Updated: 2022-02-11
 
 # VARIABLES
 # _meanACC : mean accuracy
