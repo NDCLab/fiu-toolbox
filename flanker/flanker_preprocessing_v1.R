@@ -13,6 +13,8 @@
 
 # flankEff : delta in accuracy or response time between congruent and incongruent trials
 
+#set up output dir and filename
+out_path <- '~/Downloads/'
 
 #set up root dir for input data
 data_path <- '/home/data/NDClab/datasets/'
@@ -27,13 +29,12 @@ print(data_sets)
 for(i in 1:length(data_sets)) {
 	# get pavlovia dataset
 	pav_data <- data_sets[i]
-	#set up output dir and filename
-	out_path <- '~/Downloads/'
 	proc_fileName <- paste("flanker_subject-level_summary_", Sys.Date(), ".csv", sep="", collapse=NULL)
 	trial_fileName <- paste("flanker_trial-level_summary_", Sys.Date(), ".csv", sep="", collapse=NULL)
 
 	#pull out all the subfolders (participant folders) for the root data dir
 	sub_folders <- list.files(pav_data, pattern = "sub")
+	print(sub_folders)
 
 	#create dataframe where we will store summary data
 	summaryDat <- data.frame(matrix(ncol = 11, nrow = 0))
