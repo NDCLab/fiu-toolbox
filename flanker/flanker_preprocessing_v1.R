@@ -64,7 +64,7 @@ for(i in 1:length(data_sets)) {
 			print("Woohoo! Processing file!")
 
 			#read in the data for this participant
-			flankerDat <- read.csv(file = paste(pav_data,sub_folders[i],'/',flanker_file, sep = "", collapse = NULL), stringsAsFactors = TRUE)
+			flankerDat <- read.csv(file = paste(pav_data,sub_folders[i],flanker_file, sep = "/", collapse = NULL), stringsAsFactors = TRUE)
 			id <- flankerDat$id[1]
 
 			#remove practice trials and any rows that do not reflect experiment data
