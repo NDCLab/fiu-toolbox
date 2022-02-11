@@ -17,6 +17,8 @@
 #set up root dir for input data
 data_path <- '/home/data/NDClab/datasets/'
 
+print("script started!")
+
 # match all pavlovia data
 pav_pattern <- "(rwe-dataset|social-context-dataset|missing-link-dataset)/sourcedata/raw/[a-zA-Z0-9]*/pavlovia"
 data_sets <- list.files(data_path, pattern = pav_pattern, recursive = TRUE)
@@ -24,7 +26,7 @@ data_sets <- list.files(data_path, pattern = pav_pattern, recursive = TRUE)
 for(i in 1:length(data_sets)) {
 	# get pavlovia dataset
 	pav_data <- data_sets[i]
-	print("datafile is", pav_data)
+	print("preprocessing ", pav_data)
 	#set up output dir and filename
 	out_path <- '~/Downloads/'
 	proc_fileName <- paste("flanker_subject-level_summary_", Sys.Date(), ".csv", sep="", collapse=NULL)
