@@ -20,7 +20,7 @@ out_path <- '~/Downloads/'
 data_path <- '/home/data/NDClab/datasets/'
 
 # match all pavlovia data
-pav_pattern <- "sourcedata/raw/(one-a|s1_r1|s1_r2)/pavlovia$"
+pav_pattern <- "sourcedata/raw/(one-a|s1_r1)/pavlovia$"
 data_sets <- list.dirs(data_path)
 data_sets <- data_sets[ grepl(pav_pattern, data_sets) ]
 
@@ -63,7 +63,6 @@ for(i in 1:length(data_sets)) {
 		if (!identical(flanker_file, character(0))) {
 			print("Woohoo! Processing file!")
 			flanker_path <- paste(pav_data,sub_folders[i],flanker_file, sep = "/", collapse = NULL)
-			print(flanker_path)
 			#read in the data for this participant
 			flankerDat <- read.csv(file = flanker_path, stringsAsFactors = TRUE)
 			id <- flankerDat$id[1]
