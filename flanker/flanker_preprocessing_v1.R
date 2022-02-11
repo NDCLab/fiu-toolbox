@@ -34,7 +34,6 @@ for(i in 1:length(data_sets)) {
 
 	#pull out all the subfolders (participant folders) for the root data dir
 	sub_folders <- list.files(pav_data, pattern = "sub")
-	print(sub_folders)
 
 	#create dataframe where we will store summary data
 	summaryDat <- data.frame(matrix(ncol = 11, nrow = 0))
@@ -56,7 +55,8 @@ for(i in 1:length(data_sets)) {
 
 	#loop over participant (subfolders)
 	for(i in 1:length(sub_folders)){
-
+		print(pav_data)
+		print(sub_folders[i])
 		#for this participant, find the flanker csv file
 		flanker_file <- list.files(paste(pav_data,sub_folders[i], sep = "", collapse = NULL), pattern = ".*(flanker)+.*(.csv)")
 
