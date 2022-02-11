@@ -23,7 +23,6 @@ data_path <- '/home/data/NDClab/datasets/'
 pav_pattern <- "sourcedata/raw/(one-a|s1_r1|s1_r2)/pavlovia$"
 data_sets <- list.dirs(data_path)
 data_sets <- data_sets[ grepl(pav_pattern, data_sets) ]
-print(data_sets)
 
 # TODO: above regex could be used to get all sub-files, removing some lines of code above
 for(i in 1:length(data_sets)) {
@@ -58,7 +57,7 @@ for(i in 1:length(data_sets)) {
 		print(pav_data)
 		print(sub_folders[i])
 		#for this participant, find the flanker csv file
-		flanker_file <- list.files(paste(pav_data,sub_folders[i], sep = "", collapse = NULL), pattern = ".*(flanker)+.*(.csv)")
+		flanker_file <- list.files(paste(pav_data,sub_folders[i], sep = "/", collapse = NULL), pattern = ".*(flanker)+.*(.csv)")
 
 		#logical to make sure there is a flanker file for this participant before loading, else, skip to next participant
 		if (!identical(flanker_file, character(0))) {
