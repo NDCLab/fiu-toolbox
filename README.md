@@ -1,11 +1,11 @@
-# [project name]
+# [FIU-Toolbox]
 
 ## Project Goal
-Replace this text with a pithy description of the goal of the project.
+The goal of this project is to adopt the NIH Cogntition battery tasks (such as Flanker and DCCS) as well as n-back for online use through Pavlovia. Further, we are developing analysis scripts to process the data once it has been collected. 
 
 
 ## Background & Design
-Replace this text with a slightly longer (but still only max 250 words) description of the project background and its design. 
+The FIU Toolbox was created to make online versions of the NIH Toolbox available with free open source distribution. The FIU Toolbox includes three tasks designed to measure major EF components: the Eriksen Flanker task, the Dimensional Change Card Sort (DCCS) task, and the N-back task. Additionally, this project includes preprocessing scripts for analysing the data, and NIH scoring procedures avalivable for correlations to the questionnaires or other tasks. 
 
 
 ## Roadmap
@@ -26,9 +26,9 @@ This `main` branch contains completed releases for this project. For all work-in
 ## Contributors
 | Name | Role |
 | ---  | ---  |
-| insert team member | add team member's role |
-| insert team member | add team member's role |
-| insert team member | add team member's role |
+| George Buzzell | Principal Investigator |
+| Arina Polyanskaya | Senior Research Assistant |
+| Jessica Alexander | Lab Manager |
 
 Learn more about us [here](www.ndclab.com/people).
 
