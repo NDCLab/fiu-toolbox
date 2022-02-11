@@ -21,12 +21,12 @@ data_path <- '/home/data/NDClab/datasets/'
 pav_pattern <- "sourcedata/raw/(one-a|s1_r1|s1_r2)/pavlovia$"
 data_sets <- list.dirs(data_path)
 data_sets <- data_sets[ grepl(pav_pattern, data_sets) ]
+print(data_sets)
 
 # TODO: above regex could be used to get all sub-files, removing some lines of code above
 for(i in 1:length(data_sets)) {
 	# get pavlovia dataset
 	pav_data <- data_sets[i]
-	print("preprocessing ", pav_data)
 	#set up output dir and filename
 	out_path <- '~/Downloads/'
 	proc_fileName <- paste("flanker_subject-level_summary_", Sys.Date(), ".csv", sep="", collapse=NULL)
