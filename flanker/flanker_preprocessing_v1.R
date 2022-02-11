@@ -21,11 +21,9 @@ print("script started!")
 
 # match all pavlovia data
 pav_pattern <- "pavlovia"
-
 data_sets <- list.dirs(data_path)
-print(data_sets)
 data_sets <- data_sets[ grepl(pav_pattern, data_sets) ]
-print(data_sets)
+data_sets <- unique(gsub("\\/.*", "", data_sets))
 
 for(i in 1:length(data_sets)) {
 	# get pavlovia dataset
