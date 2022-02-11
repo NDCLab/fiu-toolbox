@@ -21,7 +21,9 @@ print("script started!")
 
 # match all pavlovia data
 pav_pattern <- "(rwe-dataset|social-context-dataset|missing-link-dataset)/sourcedata/raw/[a-zA-Z0-9]*/pavlovia"
-data_sets <- list.files(data_path, pattern = pav_pattern, recursive = TRUE)
+
+data_sets <- list.dirs(data_path)
+data_sets <- dirs[ grepl(pav_pattern, dirs) ]
 print(data_sets)
 
 for(i in 1:length(data_sets)) {
