@@ -17,15 +17,12 @@
 #set up root dir for input data
 data_path <- '/home/data/NDClab/datasets/'
 
-print("script started!")
-
 # match all pavlovia data
-pav_pattern <- "pavlovia"
+pav_pattern <- "sourcedata/raw/(one-a|s1_r1|s1_r2)/pavlovia$"
 data_sets <- list.dirs(data_path)
 data_sets <- data_sets[ grepl(pav_pattern, data_sets) ]
-data_sets <- unique(gsub("/.*", "", data_sets))
-print(data_sets)
 
+# TODO: above regex could be used to get all sub-files, removing some lines of code above
 for(i in 1:length(data_sets)) {
 	# get pavlovia dataset
 	pav_data <- data_sets[i]
