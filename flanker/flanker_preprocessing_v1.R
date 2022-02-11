@@ -20,7 +20,7 @@ data_path <- '/home/data/NDClab/datasets/'
 print("script started!")
 
 # match all pavlovia data
-pav_pattern <- "(rwe-dataset|social-context-dataset|missing-link-dataset)\/sourcedata\/raw\/.*\/pavlovia.*$"
+pav_pattern <- "(rwe-dataset|social-context-dataset|missing-link-dataset)\\sourcedata\\raw\\.*\\pavlovia.*$"
 
 data_sets <- list.dirs(data_path)
 print(data_sets)
