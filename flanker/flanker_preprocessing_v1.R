@@ -24,6 +24,7 @@ data_sets <- list.dirs(data_path, pattern = pav_pattern, recursive = TRUE)
 for(i in 1:length(data_sets)) {
 	# get pavlovia dataset
 	pav_data <- data_sets[i]
+	print("datafile is", pav_data)
 	#set up output dir and filename
 	out_path <- '~/Downloads/'
 	proc_fileName <- paste("flanker_subject-level_summary_", Sys.Date(), ".csv", sep="", collapse=NULL)
