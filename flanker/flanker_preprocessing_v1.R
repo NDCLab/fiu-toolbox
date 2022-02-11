@@ -23,7 +23,7 @@ print("script started!")
 pav_pattern <- "(rwe-dataset|social-context-dataset|missing-link-dataset)/sourcedata/raw/[a-zA-Z0-9]*/pavlovia"
 
 data_sets <- list.dirs(data_path)
-data_sets <- data_sets[ grepl(pav_pattern, dirs) ]
+data_sets <- data_sets[ grepl(pav_pattern, data_sets) ]
 print(data_sets)
 
 for(i in 1:length(data_sets)) {
