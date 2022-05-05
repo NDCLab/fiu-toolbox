@@ -1,7 +1,7 @@
-# [project name]
+# FIU Toolbox
 
 ## Project Goal
-Replace this text with a pithy description of the goal of the project.
+The goal of this project is to set up standardized EF tasks including Flanker, DCCS and N-back, and create scripts for analyzing ang organizing the data collected from the tasks.
 
 
 ## Background & Design
@@ -26,9 +26,9 @@ This `main` branch contains completed releases for this project. For all work-in
 ## Contributors
 | Name | Role |
 | ---  | ---  |
-| insert team member | add team member's role |
-| insert team member | add team member's role |
-| insert team member | add team member's role |
+| George Buzzell | guidance |
+| Arina Polyanskaya | senior research assistant |
+| Jessica Alexander | laboratory manager |
 
 Learn more about us [here](www.ndclab.com/people).
 
