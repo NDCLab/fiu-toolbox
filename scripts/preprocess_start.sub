@@ -10,15 +10,19 @@
 #SBATCH --time=03:00:00          # total run time limit (HH:MM:SS)
 
 # load singularity module
-module load r-4.1.2-gcc-8.2.0-bdn3iy5
+module load r-4.0.2-gcc-8.2.0-tf4pnwr
 
 # run all preprocessing tasks
 echo "Starting flanker preprocessing"
-R flanker\flanker_preprocessing_v1.R
+cd flanker
+Rscript flanker_preprocessing_v1.R
 
 echo "Starting nback preprocessing"
-R nback\nback_preprocessing_v1.R
+cd ../nback
+Rscript nback_preprocessing_v1.R
 
 echo "Starting dccs preprocessing"
-R dccs\dccs_preprocessing_v1.R
+cd ../dccs
+Rscript dccs_preprocessing_v1.R
 
+cd ..
