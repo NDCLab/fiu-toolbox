@@ -1,4 +1,4 @@
-# [project name]
+# [FIU-toolbox]
 
 ## Project Goal
 Replace this text with a pithy description of the goal of the project.
